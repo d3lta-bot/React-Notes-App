@@ -18,16 +18,18 @@ export default function NotesInput() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newNotes = {
+  if(text.trim().length > 5){
+    let newNotes = {
       text,
     };
-    // addNotes(newNotes);
+  
     if (noteEdit.edit === true){
       updateNote(noteEdit.note.id, newNotes)
     }else{
       addNotes(newNotes)
     }
     setText("");
+  }
   };
   return (
     <div className="w-72 m-auto">
