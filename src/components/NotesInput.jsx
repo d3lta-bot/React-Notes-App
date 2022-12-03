@@ -12,6 +12,7 @@ export default function NotesInput() {
     }
   },[noteEdit])
 
+
   const handleChange = (e) => {
     setText(e.target.value);
   };

@@ -1,10 +1,21 @@
 import { createContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import notesdata from "../Notesdata/notesdata";
 
 const NotesContext = createContext();
 export const NotesProvider = ({ children }) => {
-  const [notes, setNotes] = useState(notesdata);
+  //get data from local storage
+  const getDataLS = () => {
+    const data = localStorage.getItem("notes");
+    if (data) {
+      return JSON.parse(data);
+    }
+  };
+
+  const [notes, setNotes] = useState(getDataLS());
+  //local storage
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   const [noteEdit, setNoteEdit] = useState({
     note: {},
